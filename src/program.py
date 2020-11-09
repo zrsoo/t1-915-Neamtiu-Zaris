@@ -20,21 +20,35 @@ def start_console():
             # print(str_command)
             li_command[1] = str_command
             add_function(dict_functions, li_command)
-            print(dict_functions)
+            # print(dict_functions)
         elif user_command == "list":
             try:
                 print(dict_functions[li_input[1]])
             except KeyError:
                 print("The command you are trying to list was not previously defined.")
+        elif user_command == "eval":
+            # print(dict_functions[li_input[1]])
+            # print(li_input)
+            # print(li_command)
+            try:
+                str_exec = dict_functions[li_command[0]] + "\nprint(" + li_command[1] + ")"
+            except Exception as ex:
+                print("The command you are trying to evaluate contains syntax errors, " + ex)
+            # print(str_exec)
+            exec(str_exec)
+        elif user_command == "exit":
+
+            return
 
 
 # Functions section
 def add_function(dict_functions, li_function):
     """
-    Appends the function string, of the form ("function_name(p1,p2,...,pn)=p1(+/-)....pn) to the dictionary of functions
-    :param li_functions: The dictionary of functions
-    :param function: The string containing the specifications of the function
-    :return: The list
+    Adds to the dictionary of commands the pair 'function_name': 'function_code'
+    example {'alternate_sum': 'def alternate_sum(first,second,third,fourth): return first-second+third-fourth'}
+    :param dict_functions: the dictionary of commands.
+    :param li_function: the list containing the respective strings of the command.
+    :return:
     """
     dict_functions[li_function[0]] = li_function[1]
 
