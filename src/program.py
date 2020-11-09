@@ -8,6 +8,9 @@ def start_console():
     while True:
         str_input = input("Type your command: ")
 
+        if str_input == "exit":
+            return
+
         li_input = str_input.split()
         user_command = li_input[0]
         mamba_function = li_input[1]
@@ -36,9 +39,6 @@ def start_console():
                 print("The command you are trying to evaluate contains syntax errors, " + ex)
             # print(str_exec)
             exec(str_exec)
-        elif user_command == "exit":
-
-            return
 
 
 # Functions section
