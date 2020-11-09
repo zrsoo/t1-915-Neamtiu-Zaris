@@ -35,10 +35,11 @@ def start_console():
             # print(li_command)
             try:
                 str_exec = dict_functions[li_command[0]] + "\nprint(" + li_command[1] + ")"
+                exec(str_exec)
             except Exception as ex:
                 print("The command you are trying to evaluate contains syntax errors, " + ex)
             # print(str_exec)
-            exec(str_exec)
+            # exec(str_exec)
 
 
 # Functions section
@@ -68,4 +69,3 @@ def format_command(str_command):
 
 # Start
 start_console()
-
