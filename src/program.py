@@ -13,13 +13,19 @@ def start_console():
         mamba_function = li_input[1]
 
         # print(li_input)
-        li_command = format_input(mamba_function)
-
-        if li_input[0] == "add":
+        li_command = format_input(mamba_function) # = ['function_name', 'function_name(p1,p2,...,pn)=p1(+|-)p2(+|-)p3(+|-)...(+|-)pn']
+        # print(li_command)
+        if user_command == "add":
+            str_command = format_command(li_command[1])
+            # print(str_command)
+            li_command[1] = str_command
             add_function(dict_functions, li_command)
-            # print(dict_functions)
-        elif li_input[0] == "list":
-            pass
+            print(dict_functions)
+        elif user_command == "list":
+            try:
+                print(dict_functions[li_input[1]])
+            except KeyError:
+                print("The command you are trying to list was not previously defined.")
 
 
 # Functions section
@@ -40,7 +46,10 @@ def format_input(str_function):
     return [function_name, str_function]
 
 
-
+def format_command(str_command):
+    str_command = "def " + str_command
+    str_command = str_command.replace("=", ": return ")
+    return str_command
 
 
 # Start
